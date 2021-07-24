@@ -8,7 +8,13 @@
   </div>
   <div class="cards">
     <% @lists.each do |list| %>
-      <div class="card card-lists">
+      <div class="card card-lists" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(
+      <% if list.photo.attached? %>
+        <%= cl_image_path list.photo.key, height: 150, crop: :fill %>
+      <% else %>
+      <%= 'https://picsum.photos/200' %>
+      <% end %>
+      )">
         <h3><%= link_to list.name, list_path(list) %></h3>
       </div>
     <% end %>
