@@ -1,0 +1,56 @@
+<div class="banner">
+  <h1><%= @list.name %></h1>
+</div>
+<div class="container">
+  <div class="btn btn-primary">
+    <%= link_to 'Add a bookmark', new_list_bookmark_path(@list) %>
+  </div>
+  <div class="btn btn-warning">
+    <%= link_to 'Back to lists', lists_path %>
+  </div>
+  <div class="btn btn-primary">
+    <%= link_to 'Add a review', new_list_review_path(@list) %>
+  </div>
+  <div class="cards">
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="card">
+        <!-- <div style="background-image: url(<%=  bookmark.movie.poster_url %>)" class="movie-poster"></div> -->
+        <img src= "<%=  bookmark.movie.poster_url %>" alt="" class="movie-poster">
+        <div class="card-movies">
+          <div class="title">
+          <h4><%= bookmark.movie.title %></h4>
+          <p><i class="fas fa-star"></i> <%= bookmark.movie.rating %></p>
+          </div>
+          <p class="movie"><%= bookmark.movie.overview %></p>
+          <p><i class="fas fa-quote-left"></i> <%= bookmark.comment %></p>
+          <%= link_to bookmark_path(bookmark), method: :delete,
+                data: { confirm: "Are you sure?" } do %>
+            <p><i class="far fa-trash"></i> Delete bookmark</p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <div class="reviews">
+      <div class="display-reviews">
+        <% if @list.reviews.empty? %>
+          <p>Be the first to leave a review!</p>
+        <% else %>
+          <% @list.reviews.each do |review| %>
+          <p><% review.rating.times do %>
+            ⭐
+            <% end %>
+          </p>
+          <p><%= review.content %></p>
+          <% unless review == @list.reviews.last %>
+            <hr>
+          <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="new-review">
+        <%= render "review", list: @list, review: @review %>
+      </div>
+  </div>
+</div>

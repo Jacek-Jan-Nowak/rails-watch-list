@@ -1,0 +1,46 @@
+.card {
+  border-radius: 10px;
+  margin: 20px;
+  width: 300px;
+  display: flex;
+  box-shadow: 8px 8px 8px rgba(0,0,0,0.3)
+}
+
+.card-movies {
+  height: 400px;
+  justify-content: center;
+  padding: 16px;
+}
+
+.movie {
+  height: 180px;
+  overflow: hidden;
+}
+
+.movie-poster {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+.card-lists {
+  align-items: center;
+  background-image: url('https://picsum.photos/300');
+  background-size: cover;
+  height: 150px;
+  justify-content: center;
+  padding: 16px;
+  a {
+    color: white;
+  }
+
+  img {
+    height: 200px;
+    background-size: cover;
+  }
+}
+
+.cards {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+}
